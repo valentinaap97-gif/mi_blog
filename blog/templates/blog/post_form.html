@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block title %}{% if object %}Editar post{% else %}Nuevo post{% endif %}{% endblock %}
+
+{% block content %}
+<h1 class="mb-4">{% if object %}Editar post{% else %}Nuevo post{% endif %}</h1>
+
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">Guardar</button>
+    <a href="{% url 'post_list' %}" class="btn btn-secondary">Cancelar</a>
+</form>
+{% endblock %}
