@@ -1,3 +1,4 @@
+from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.urls import reverse_lazy
 from django.views.generic import (
@@ -49,3 +50,10 @@ class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 
     def test_func(self):
         return self.get_object().autor == self.request.user
+
+
+class RegistroView(CreateView):
+    form_class = UserCreationForm
+    template_name = 'registration/registro.html'
+    success_url = reverse_lazy('login')
+    
